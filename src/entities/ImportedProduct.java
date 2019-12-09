@@ -1,5 +1,7 @@
 package entities;
 
+import java.io.ObjectInputStream.GetField;
+
 public class ImportedProduct extends Product {
 
 	private Double customFee;
@@ -20,10 +22,13 @@ public class ImportedProduct extends Product {
 	public void setCustomFee(Double customFee) {
 		this.customFee = customFee;
 	}
+	
+	public double totalPrice() {
+		return getPrice() + customFee;
+	}
 
 	@Override
 	public String priceTag() {
-		// TODO Auto-generated method stub
-		return super.priceTag() + customFee;
+		return getName() + " $ " + totalPrice() + " (Custom fee: $ " + getCustomFee()+ ")";
 	}	
 }
